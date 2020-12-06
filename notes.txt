@@ -1,0 +1,17 @@
+Might have to look at how to manage timestamp comming from the database
+https://stackoverflow.com/questions/40150175/most-appropriate-sql-and-java-data-types-for-storing-date-and-time#:~:text=The%20corresponding%20Java%20type%20to,Java%2C%20JDBC%20and%20MySQL%20Types.
+https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-type-conversions.html
+
+Difference Between One-to-Many, Many-to-One and Many-to-Many?
+https://stackoverflow.com/questions/3113885/difference-between-one-to-many-many-to-one-and-many-to-many
+
+In which case do you use the JPA @JoinTable annotation?
+https://stackoverflow.com/questions/5478328/in-which-case-do-you-use-the-jpa-jointable-annotation
+
+JPA queury creation
+https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#query.creation
+look at section 6.3.2. Query Creation
+
+When creating a routine, the format for time is like "2020-12-05T22:01:00.000+00:00" 
+
+To print to console use: System.out.print();
