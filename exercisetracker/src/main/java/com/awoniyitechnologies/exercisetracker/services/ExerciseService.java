@@ -40,7 +40,7 @@ public class ExerciseService {
 
     public Exercise updateExercise(Long id, Exercise exercise) {
         Exercise existingExercise = exerciseRepository.getOne(id);
-        BeanUtils.copyProperties(exercise, existingExercise, "exercise_id", "user");
+        BeanUtils.copyProperties(exercise, existingExercise, "exercise_id", "user", "parent");
         return exerciseRepository.saveAndFlush(existingExercise);
     }
 
