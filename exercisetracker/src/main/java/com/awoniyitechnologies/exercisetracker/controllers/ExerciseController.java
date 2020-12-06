@@ -30,10 +30,10 @@ public class ExerciseController {
         return exerciseService.getAllExercises();
     }
 
-    @PostMapping
-    public Exercise createExercise(@RequestBody Exercise exercise) {
-        return exerciseService.createExercise(exercise);
-    }
+    // @PostMapping
+    // public Exercise createExercise(@RequestBody Exercise exercise) {
+    //     return exerciseService.createExercise(exercise);
+    // }
 
     @GetMapping
     @RequestMapping("{id}")
@@ -57,9 +57,8 @@ public class ExerciseController {
         return exerciseService.getExerciseVariations(id);
     }
 
-    // @PostMapping
-    @RequestMapping(path = "{id}/variations", method = RequestMethod.POST)
-    public Exercise createExerciseVariations(@PathVariable Long id, @RequestBody Exercise exercise) {
-        return exerciseService.createExerciseVariations(id, exercise);
-    }
+    // @RequestMapping(path = "{id}/variations", method = RequestMethod.POST)
+    // public Exercise createExerciseVariation(@PathVariable Long id, @RequestBody Exercise exercise) {
+    //     return exerciseService.createExerciseVariation(id, exercise);
+    // }
 }

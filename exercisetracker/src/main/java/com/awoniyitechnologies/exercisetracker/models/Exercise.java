@@ -26,9 +26,9 @@ public class Exercise {
     private Exercise parent;
 
     // @JsonIgnore
-    // @ManyToOne
-    // @JoinColumn(name="user_id")
-    // private User user;
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
 
     public Long getExercise_id() { return exercise_id; }
     public void setExercise_id(Long exercise_id) { this.exercise_id = exercise_id; }
@@ -41,5 +41,8 @@ public class Exercise {
 
     public Exercise getParent() { return parent; }
     public void setParent(Exercise parent) { this.parent = parent; }
+
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
     
 }

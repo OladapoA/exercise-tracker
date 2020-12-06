@@ -2,6 +2,7 @@ package com.awoniyitechnologies.exercisetracker.services;
 
 import java.util.List;
 
+import com.awoniyitechnologies.exercisetracker.models.Exercise;
 import com.awoniyitechnologies.exercisetracker.models.Routine;
 import com.awoniyitechnologies.exercisetracker.models.User;
 import com.awoniyitechnologies.exercisetracker.repositories.UserRepository;
@@ -16,11 +17,13 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
     
     private RoutineService routineService;
+    private ExerciseService exerciseService;
     private UserRepository userRepository;
 
     @Autowired
-    public UserService(RoutineService routineService, UserRepository userRepository) {
+    public UserService(RoutineService routineService, UserRepository userRepository, ExerciseService exerciseService) {
         this.routineService = routineService;
+        this.exerciseService = exerciseService;
         this.userRepository = userRepository;
     }
 
@@ -55,5 +58,20 @@ public class UserService {
         User user = getUser(id);
         routine.setUser(user);
         return routineService.createUserRoutine(routine);
+    }
+
+    public List<Exercise> getUserExercises(Long id) {
+        User user = getUser(id);
+        return exerciseService.getUserExercises(user);
+    }
+
+    public Exercise createUserExercise(Long id, Exercise exercise) {
+        exercise.setUser(getUser(id));
+        return exerciseService.createUserExercise(exercise);
+    }
+
+    public Exercise createExerciseVariation(Long user_id, Long exercise_id, Exercise exercise) {
+        exercise.setUser(getUser(user_id));
+        return exerciseService.createExerciseVariation(exercise_id, exercise);
     }
 }

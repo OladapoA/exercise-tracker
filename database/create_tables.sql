@@ -18,7 +18,7 @@ CREATE TABLE routines
 CREATE TABLE exercises
 (
     exercise_id       SERIAL PRIMARY KEY,
-    -- user_id           int NOT NULL REFERENCES users (user_id),
+    user_id           int NOT NULL REFERENCES users (user_id),
     variation_parent  int REFERENCES exercises (exercise_id),
     name              varchar(30),
     description       text

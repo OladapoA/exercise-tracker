@@ -2,6 +2,7 @@ package com.awoniyitechnologies.exercisetracker.controllers;
 
 import java.util.List;
 
+import com.awoniyitechnologies.exercisetracker.models.Exercise;
 import com.awoniyitechnologies.exercisetracker.models.Routine;
 import com.awoniyitechnologies.exercisetracker.models.User;
 import com.awoniyitechnologies.exercisetracker.services.UserService;
@@ -68,6 +69,24 @@ public class UserController {
     public Routine createUserRoutine(@PathVariable Long id, @RequestBody Routine routine) {
         System.out.print("create");
         return userService.createUserRoutine(id, routine);
+    }
+
+    @GetMapping
+    @RequestMapping(path = "{id}/exercises")
+    public List<Exercise> getUserExercises(@PathVariable Long id) {
+        return userService.getUserExercises(id);
+    }
+
+    @RequestMapping(path = "{id}/exercises", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public Exercise createUserExercise(@PathVariable Long id, @RequestBody Exercise exercise) {
+        System.out.print("create");
+        return userService.createUserExercise(id, exercise);
+    }
+
+    @RequestMapping(path = "{user_id}/exercises/{exercise_id}/variations", method = RequestMethod.POST)
+    public Exercise createExerciseVariation(@PathVariable Long user_id, @PathVariable Long exercise_id, @RequestBody Exercise exercise) {
+        return userService.createExerciseVariation(user_id, exercise_id, exercise);
     }
 
 }

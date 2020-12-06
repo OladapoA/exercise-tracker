@@ -1,13 +1,14 @@
+INSERT INTO users (first_name, last_name) VALUES ('ORIGINAL', 'CREATOR');
 INSERT INTO users (first_name, last_name) VALUES ('John', 'Doe');
 INSERT INTO users (first_name, last_name) VALUES ('Jane', 'Doe');
 
-INSERT INTO routines (user_id, is_public, name, description, created_at) VALUES (1, FALSE, 'Best Workout', 'The best workout according to me', '2020-11-28 14:55:00');
-INSERT INTO routines (user_id, is_public, name, description, created_at) VALUES (2, TRUE, 'Worst Workout', 'The worst workout in name only', '2020-11-28 14:56:00');
+INSERT INTO routines (user_id, is_public, name, description, created_at) VALUES (2, FALSE, 'Best Workout', 'The best workout according to me', '2020-11-28 14:55:00');
+INSERT INTO routines (user_id, is_public, name, description, created_at) VALUES (3, TRUE, 'Worst Workout', 'The worst workout in name only', '2020-11-28 14:56:00');
 
-INSERT INTO exercises (name, variation_parent, description) VALUES ('Rest', NULL, 'Rest');
-INSERT INTO exercises (name, variation_parent, description) VALUES ('Pull-ups', NULL, 'Pull body to bar');
-INSERT INTO exercises (name, variation_parent, description) VALUES ('Chin-ups', 2, 'Pull body to bar with the back of your hand facing away from you and elbows point downwards with a narrow grip');
-INSERT INTO exercises (name, variation_parent, description) VALUES ('Typewriter pull-up', 2, 'Keeping your head above bar, pull yourself from side to side');
+INSERT INTO exercises (user_id, name, variation_parent, description) VALUES (1, 'Rest', NULL, 'Rest');
+INSERT INTO exercises (user_id, name, variation_parent, description) VALUES (1, 'Pull-ups', NULL, 'Pull body to bar');
+INSERT INTO exercises (user_id, name, variation_parent, description) VALUES (1, 'Chin-ups', 2, 'Pull body to bar with the back of your hand facing away from you and elbows point downwards with a narrow grip');
+INSERT INTO exercises (user_id, name, variation_parent, description) VALUES (1, 'Typewriter pull-up', 2, 'Keeping your head above bar, pull yourself from side to side');
 
 INSERT INTO routine_exercises (routine_id, exercise_id, sets, set_break, reps, rep_break, time) VALUES (1, 2, 4, '0:02:00', 10, '0:00:30', NULL);
 INSERT INTO routine_exercises (routine_id, exercise_id, sets, set_break, reps, rep_break, time) VALUES (1, 1, NULL,	NULL, NULL,	NULL, '0:05:00');

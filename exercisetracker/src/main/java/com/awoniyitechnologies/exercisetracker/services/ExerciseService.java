@@ -3,6 +3,7 @@ package com.awoniyitechnologies.exercisetracker.services;
 import java.util.List;
 
 import com.awoniyitechnologies.exercisetracker.models.Exercise;
+import com.awoniyitechnologies.exercisetracker.models.User;
 import com.awoniyitechnologies.exercisetracker.repositories.ExerciseRepository;
 
 import org.springframework.beans.BeanUtils;
@@ -25,8 +26,12 @@ public class ExerciseService {
         return exerciseRepository.findAll();
     }
 
-    public Exercise createExercise(Exercise exercise) {
+    public Exercise createUserExercise(Exercise exercise) {
         return exerciseRepository.saveAndFlush(exercise);
+    }
+
+    public List<Exercise> getUserExercises(User user) {
+        return exerciseRepository.findByUser(user);
     }
 
     public Exercise getExercise(Long id) {
@@ -35,7 +40,7 @@ public class ExerciseService {
 
     public Exercise updateExercise(Long id, Exercise exercise) {
         Exercise existingExercise = exerciseRepository.getOne(id);
-        BeanUtils.copyProperties(exercise, existingExercise, "exercise_id");
+        BeanUtils.copyProperties(exercise, existingExercise, "exercise_id", "user");
         return exerciseRepository.saveAndFlush(existingExercise);
     }
 
@@ -48,9 +53,8 @@ public class ExerciseService {
         return exerciseRepository.findByParent(exercise);
     }
 
-    public Exercise createExerciseVariations(Long id, Exercise exercise) {
-        Exercise parent = getExercise(id);
-        exercise.setParent(parent);
+    public Exercise createExerciseVariation(Long exercise_id, Exercise exercise) {
+        exercise.setParent(getExercise(exercise_id));
         return exerciseRepository.saveAndFlush(exercise);
     }
 
