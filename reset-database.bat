@@ -1,9 +1,6 @@
 @REM https://www.tutorialspoint.com/batch_script/batch_script_quick_guide.htm
 @echo off
 
-@REM echo starting database docker container:
-@REM docker start postgres-main
-
 echo =============================================================================
 echo RESTING DATABASE
 echo =============================================================================
