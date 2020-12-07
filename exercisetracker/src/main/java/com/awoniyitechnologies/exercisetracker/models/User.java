@@ -27,10 +27,10 @@ public class User {
     @JoinColumn(name="user_id")
     private List<Routine> routines;
 
-    // @JsonIgnore
-    // @OneToMany
-    // @JoinColumn(name="exercise_id")
-    // private List<Exercise> excerises;
+    @JsonIgnore
+    @OneToMany
+    @JoinColumn(name="user_id")
+    private List<Exercise> excerises;
 
     public Long getUser_id() { return user_id; }
     public void setUser_id(Long user_id) { this.user_id = user_id; }
@@ -44,11 +44,11 @@ public class User {
     public List<Routine> getRoutines() { return routines; }
     public void setRoutines(List<Routine> routines) { this.routines = routines; }
 
-    // public List<Exercise> getExcerises() {
-    //     return excerises;
-    // }
+    public List<Exercise> getExcerises() {
+        return excerises;
+    }
 
-    // public void setExcerises(List<Exercise> excerises) {
-    //     this.excerises = excerises;
-    // }
+    public void setExcerises(List<Exercise> excerises) {
+        this.excerises = excerises;
+    }
 }

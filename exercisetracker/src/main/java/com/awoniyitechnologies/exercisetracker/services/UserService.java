@@ -41,7 +41,7 @@ public class UserService {
 
     public User updateUser(Long id, User user) {
         User existingUser = userRepository.getOne(id);
-        BeanUtils.copyProperties(user, existingUser, "user_id");
+        BeanUtils.copyProperties(user, existingUser, "user_id", "excerises");
         return userRepository.saveAndFlush(existingUser);
     }
 
