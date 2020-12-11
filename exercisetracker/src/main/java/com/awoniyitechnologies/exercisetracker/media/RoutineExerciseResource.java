@@ -1,38 +1,24 @@
-package com.awoniyitechnologies.exercisetracker.models;
+package com.awoniyitechnologies.exercisetracker.media;
 
 import java.sql.Time;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-@Entity(name = "routine_exercises")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class RoutineExercise {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class RoutineExerciseResource {
+    
     private Long routine_exercise_id;
+    private ExerciseResource exercise;
     private Integer sets;
     private Time set_break;
     private Integer  reps;
     private Time rep_break;
     private Time time;
 
-    @ManyToOne
-    @JoinColumn(name = "routine_id")
-    private Routine routine;
-
-    @ManyToOne
-    @JoinColumn(name = "exercise_id")
-    private Exercise exercise;
+    public RoutineExerciseResource(){}
 
     public Long getRoutine_exercise_id() { return routine_exercise_id; }
     public void setRoutine_exercise_id(Long routine_exercise_id) { this.routine_exercise_id = routine_exercise_id; }
+
+    public ExerciseResource getExercise() { return exercise; }
+    public void setExercise(ExerciseResource exercise) { this.exercise = exercise; }
 
     public Integer getSets() { return sets; }
     public void setSets(Integer sets) { this.sets = sets; }
@@ -48,11 +34,4 @@ public class RoutineExercise {
 
     public Time getTime() { return time; }
     public void setTime(Time time) { this.time = time; }
-
-    public Routine getRoutine() { return routine; }
-    public void setRoutine(Routine routine) { this.routine = routine; }
-
-    public Exercise getExercise() { return exercise; }
-    public void setExercise(Exercise exercise) { this.exercise = exercise; }
-
 }

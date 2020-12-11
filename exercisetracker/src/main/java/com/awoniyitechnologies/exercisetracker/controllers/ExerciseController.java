@@ -2,6 +2,8 @@ package com.awoniyitechnologies.exercisetracker.controllers;
 
 import java.util.List;
 
+import com.awoniyitechnologies.exercisetracker.media.ExerciseResource;
+import com.awoniyitechnologies.exercisetracker.media.ExerciseResourceBuilder;
 import com.awoniyitechnologies.exercisetracker.models.Exercise;
 import com.awoniyitechnologies.exercisetracker.services.ExerciseService;
 
@@ -19,10 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class ExerciseController {
     
     private ExerciseService exerciseService;
+    private ExerciseResourceBuilder exerciseResourceBuilder;
 
     @Autowired
-    public ExerciseController (ExerciseService exerciseService) {
+    public ExerciseController(ExerciseService exerciseService, ExerciseResourceBuilder exerciseResourceBuilder) {
         this.exerciseService = exerciseService;
+        this.exerciseResourceBuilder = exerciseResourceBuilder;
     }
 
     @GetMapping
@@ -35,10 +39,17 @@ public class ExerciseController {
     //     return exerciseService.createExercise(exercise);
     // }
 
+    // @GetMapping
+    // @RequestMapping("{id}")
+    // public Exercise getExercise(@PathVariable Long id) {
+    //     return exerciseService.getExercise(id);
+    // }
+
     @GetMapping
     @RequestMapping("{id}")
-    public Exercise getExercise(@PathVariable Long id) {
-        return exerciseService.getExercise(id);
+    public ExerciseResource getExercise(@PathVariable Long id) {
+        Exercise exercise = exerciseService.getExercise(id);
+        return exerciseResourceBuilder.toResource(exercise);
     }
 
     @RequestMapping(path = "{id}", method = RequestMethod.PUT)

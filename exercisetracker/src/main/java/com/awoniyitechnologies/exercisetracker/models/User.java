@@ -44,11 +44,6 @@ public class User {
     public List<Routine> getRoutines() { return routines; }
     public void setRoutines(List<Routine> routines) { this.routines = routines; }
 
-    public List<Exercise> getExcerises() {
-        return excerises;
-    }
-
-    public void setExcerises(List<Exercise> excerises) {
-        this.excerises = excerises;
-    }
+    public List<Exercise> getExcerises() { return excerises; }
+    public void setExcerises(List<Exercise> excerises) { this.excerises = excerises; }
 }

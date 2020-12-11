@@ -2,6 +2,8 @@ package com.awoniyitechnologies.exercisetracker.controllers;
 
 import java.util.List;
 
+import com.awoniyitechnologies.exercisetracker.media.UserResource;
+import com.awoniyitechnologies.exercisetracker.media.UserResourceBuilder;
 import com.awoniyitechnologies.exercisetracker.models.Exercise;
 import com.awoniyitechnologies.exercisetracker.models.Routine;
 import com.awoniyitechnologies.exercisetracker.models.User;
@@ -24,10 +26,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class UserController {
 
     private UserService userService;
+    private UserResourceBuilder userResourceBuilder;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserResourceBuilder userResourceBuilder) {
         this.userService = userService;
+        this.userResourceBuilder = userResourceBuilder;
     }
     
     @GetMapping
@@ -35,11 +39,28 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    // @GetMapping
+    // @RequestMapping("{id}")
+    // public User getUser(@PathVariable Long id) {
+    //     return userService.getUser(id);
+    // }
+
     @GetMapping
     @RequestMapping("{id}")
-    public User getUser(@PathVariable Long id) {
-        return userService.getUser(id);
+    public UserResource getUser(@PathVariable Long id) {
+        User user = userService.getUser(id);
+        UserResource userResource = userResourceBuilder.toResource(user);
+        return userResource;
     }
+
+    // @GetMapping
+    // @RequestMapping("{id}")
+    // public void getUser(@PathVariable Long id) {
+    //     User user = userService.getUser(id);
+    //     userResourceBuilder.toResource(user);
+    //     // UserResource userResource = userResourceBuilder.toResource(user);
+    //     // System.out.print(userResource);
+    // }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
