@@ -13,7 +13,6 @@ import com.awoniyitechnologies.exercisetracker.services.RoutineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,12 +40,6 @@ public class RoutineController {
         return routineResourceBuilder.toResource(routines);
     }
 
-    // @GetMapping
-    // @RequestMapping("{id}")
-    // public Routine getRoutine(@PathVariable Long id) {
-    //     return routineService.getRoutine(id);
-    // }
-
     @GetMapping
     @RequestMapping("{id}")
     public RoutineResource getRoutine(@PathVariable Long id) {
@@ -55,8 +48,9 @@ public class RoutineController {
     }
 
     @RequestMapping(path = "{id}", method = RequestMethod.PUT)
-    public Routine updateRoutine(@PathVariable Long id, @RequestBody Routine routine) {
-        return routineService.updateRoutine(id, routine);
+    public RoutineResource updateRoutine(@PathVariable Long id, @RequestBody Routine routine) {
+        Routine updatedRoutine = routineService.updateRoutine(id, routine);
+        return routineResourceBuilder.toResource(updatedRoutine);
     }
 
     @RequestMapping(path = "{id}", method = RequestMethod.DELETE)
@@ -70,10 +64,4 @@ public class RoutineController {
         List<RoutineExercise> routineExercises = routineService.getAllExercisesForRoutine(id);
         return routineExerciseResourceBuilder.toResource(routineExercises);
     }
-
-    // @PostMapping
-    // @RequestMapping("{id}/routine_exercises")
-    // public RoutineExercise createRoutineExercise(@PathVariable Long id, @RequestBody RoutineExercise routineExercise) {
-    //     return routineService.createRoutineExercise(id);
-    // }
 }
