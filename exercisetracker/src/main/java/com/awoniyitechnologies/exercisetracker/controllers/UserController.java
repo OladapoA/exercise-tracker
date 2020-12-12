@@ -2,6 +2,10 @@ package com.awoniyitechnologies.exercisetracker.controllers;
 
 import java.util.List;
 
+import com.awoniyitechnologies.exercisetracker.media.ExerciseResource;
+import com.awoniyitechnologies.exercisetracker.media.ExerciseResourceBuilder;
+import com.awoniyitechnologies.exercisetracker.media.RoutineResource;
+import com.awoniyitechnologies.exercisetracker.media.RoutineResourceBuilder;
 import com.awoniyitechnologies.exercisetracker.media.UserResource;
 import com.awoniyitechnologies.exercisetracker.media.UserResourceBuilder;
 import com.awoniyitechnologies.exercisetracker.models.Exercise;
@@ -27,50 +31,42 @@ public class UserController {
 
     private UserService userService;
     private UserResourceBuilder userResourceBuilder;
+    private RoutineResourceBuilder routineResourceBuilder;
+    private ExerciseResourceBuilder exerciseResourceBuilder;
 
     @Autowired
-    public UserController(UserService userService, UserResourceBuilder userResourceBuilder) {
+    public UserController(UserService userService, UserResourceBuilder userResourceBuilder,
+            RoutineResourceBuilder routineResourceBuilder, ExerciseResourceBuilder exerciseResourceBuilder) {
         this.userService = userService;
         this.userResourceBuilder = userResourceBuilder;
+        this.routineResourceBuilder = routineResourceBuilder;
+        this.exerciseResourceBuilder = exerciseResourceBuilder;
     }
     
     @GetMapping
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
+    public List<UserResource> getAllUsers() {
+        List<User> users = userService.getAllUsers();
+        return userResourceBuilder.toResource(users);
     }
-
-    // @GetMapping
-    // @RequestMapping("{id}")
-    // public User getUser(@PathVariable Long id) {
-    //     return userService.getUser(id);
-    // }
 
     @GetMapping
     @RequestMapping("{id}")
     public UserResource getUser(@PathVariable Long id) {
         User user = userService.getUser(id);
-        UserResource userResource = userResourceBuilder.toResource(user);
-        return userResource;
+        return userResourceBuilder.toResource(user);
     }
-
-    // @GetMapping
-    // @RequestMapping("{id}")
-    // public void getUser(@PathVariable Long id) {
-    //     User user = userService.getUser(id);
-    //     userResourceBuilder.toResource(user);
-    //     // UserResource userResource = userResourceBuilder.toResource(user);
-    //     // System.out.print(userResource);
-    // }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public User createUser(@RequestBody User user) {
-        return userService.createUser(user);
+    public UserResource createUser(@RequestBody User user) {
+        User newUser = userService.createUser(user);
+        return userResourceBuilder.toResource(newUser);
     }
     
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
-    public User updateUser(@PathVariable Long id, @RequestBody User user) {
-        return userService.updateUser(id, user);
+    public UserResource updateUser(@PathVariable Long id, @RequestBody User user) {
+        User updatedUser = userService.updateUser(id, user);
+        return userResourceBuilder.toResource(updatedUser);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
@@ -80,32 +76,36 @@ public class UserController {
     
     @GetMapping
     @RequestMapping(path = "{id}/routines")
-    public List<Routine> getUserRoutines(@PathVariable Long id) {
-        return userService.getUserRoutines(id);
+    public List<RoutineResource> getUserRoutines(@PathVariable Long id) {
+        List<Routine> routines = userService.getUserRoutines(id);
+        return routineResourceBuilder.toResource(routines);
     }
 
     @RequestMapping(path = "{id}/routines", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public Routine createUserRoutine(@PathVariable Long id, @RequestBody Routine routine) {
-        return userService.createUserRoutine(id, routine);
+    public RoutineResource createUserRoutine(@PathVariable Long id, @RequestBody Routine routine) {
+        Routine newRoutine = userService.createUserRoutine(id, routine);
+        return routineResourceBuilder.toResource(newRoutine);
     }
 
     @GetMapping
     @RequestMapping(path = "{id}/exercises")
-    public List<Exercise> getUserExercises(@PathVariable Long id) {
-        return userService.getUserExercises(id);
+    public List<ExerciseResource> getUserExercises(@PathVariable Long id) {
+        List<Exercise> exercises = userService.getUserExercises(id);
+        return exerciseResourceBuilder.toResource(exercises);
     }
 
     @RequestMapping(path = "{id}/exercises", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public Exercise createUserExercise(@PathVariable Long id, @RequestBody Exercise exercise) {
-        System.out.print("create");
-        return userService.createUserExercise(id, exercise);
+    public ExerciseResource createUserExercise(@PathVariable Long id, @RequestBody Exercise exercise) {
+        Exercise newExercise = userService.createUserExercise(id, exercise);
+        return exerciseResourceBuilder.toResource(newExercise);
     }
 
     @RequestMapping(path = "{user_id}/exercises/{exercise_id}/variations", method = RequestMethod.POST)
-    public Exercise createExerciseVariation(@PathVariable Long user_id, @PathVariable Long exercise_id, @RequestBody Exercise exercise) {
-        return userService.createExerciseVariation(user_id, exercise_id, exercise);
+    public ExerciseResource createExerciseVariation(@PathVariable Long user_id, @PathVariable Long exercise_id, @RequestBody Exercise exercise) {
+        Exercise newExercise = userService.createExerciseVariation(user_id, exercise_id, exercise);
+        return exerciseResourceBuilder.toResource(newExercise);
     }
 
 }

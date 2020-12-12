@@ -24,20 +24,23 @@ public class RoutineResourceBuilder {
     public RoutineResource toResource(Routine routine) {
         RoutineResource resource = new RoutineResource();
 
-        
         resource.setUser_id(routine.getUser().getUser_id());
         resource.setRoutine_id(routine.getRoutine_id());
         resource.setIs_public(routine.getIs_public());
         resource.setName(routine.getName());
         resource.setDescription(routine.getDescription());
         resource.setCreated_at(routine.getCreated_at());
+        resource.setNo_of_exercises(routineExerciseService.getAllExercisesForRoutine(routine).size());
 
-        List<RoutineExercise> routineExercises = routineExerciseService.getAllExercisesForRoutine(routine);
-        List<RoutineExerciseResource> exercises = new ArrayList<RoutineExerciseResource>();
-        for (RoutineExercise routineExercise : routineExercises) {
-            exercises.add(routineExerciseResourceBuilder.toResource(routineExercise));
+        return resource;
+    }
+
+    public List<RoutineResource> toResource(List<Routine> routines) {
+        List<RoutineResource> resource = new ArrayList<RoutineResource>();
+
+        for (Routine routine : routines) {
+            resource.add(this.toResource(routine));
         }
-        resource.setExercises(exercises);
 
         return resource;
     }

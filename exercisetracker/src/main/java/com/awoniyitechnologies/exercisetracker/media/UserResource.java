@@ -8,14 +8,14 @@ public class UserResource {
     private String first_name;
     private String last_name;
 
-    @JsonCreator
-    public UserResource(@JsonProperty("type") Long user_id,
-            @JsonProperty("first_name") String first_name,
-            @JsonProperty("last_name") String last_name) {
-        this.user_id = user_id;
-        this.first_name = first_name;
-        this.last_name = last_name;
-    }
+    // @JsonCreator
+    // public UserResource(@JsonProperty("user_id") Long user_id,
+    //         @JsonProperty("first_name") String first_name,
+    //         @JsonProperty("last_name") String last_name) {
+    //     this.user_id = user_id;
+    //     this.first_name = first_name;
+    //     this.last_name = last_name;
+    // }
 
     public UserResource() {}
     // public UserResource(Long user_id, String first_name, String last_name) {

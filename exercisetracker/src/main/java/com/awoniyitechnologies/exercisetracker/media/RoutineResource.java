@@ -1,7 +1,6 @@
 package com.awoniyitechnologies.exercisetracker.media;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 public class RoutineResource {
 
@@ -11,7 +10,7 @@ public class RoutineResource {
     private String name;
     private String description;
     private Timestamp created_at;
-    private List<RoutineExerciseResource> exercises;
+    private Integer no_of_exercises;
 
     public RoutineResource() {}
 
@@ -32,9 +31,9 @@ public class RoutineResource {
 
     public Timestamp getCreated_at() { return created_at; }
     public void setCreated_at(Timestamp created_at) { this.created_at = created_at; }
-
-    public List<RoutineExerciseResource> getExercises() { return exercises; }
-    public void setExercises(List<RoutineExerciseResource> exercises) { this.exercises = exercises; }
+    
+    public Integer getNo_of_exercises() { return no_of_exercises; }
+    public void setNo_of_exercises(Integer no_of_exercises) { this.no_of_exercises = no_of_exercises; }
 
 
 }

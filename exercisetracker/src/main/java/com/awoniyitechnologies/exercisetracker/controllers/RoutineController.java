@@ -2,6 +2,8 @@ package com.awoniyitechnologies.exercisetracker.controllers;
 
 import java.util.List;
 
+import com.awoniyitechnologies.exercisetracker.media.RoutineExerciseResource;
+import com.awoniyitechnologies.exercisetracker.media.RoutineExerciseResourceBuilder;
 import com.awoniyitechnologies.exercisetracker.media.RoutineResource;
 import com.awoniyitechnologies.exercisetracker.media.RoutineResourceBuilder;
 import com.awoniyitechnologies.exercisetracker.models.Routine;
@@ -23,16 +25,20 @@ public class RoutineController {
     
     private RoutineService routineService;
     private RoutineResourceBuilder routineResourceBuilder;
+    private RoutineExerciseResourceBuilder routineExerciseResourceBuilder;
 
     @Autowired
-    public RoutineController(RoutineService routineService, RoutineResourceBuilder routineResourceBuilder) {
+    public RoutineController(RoutineService routineService, RoutineResourceBuilder routineResourceBuilder,
+            RoutineExerciseResourceBuilder routineExerciseResourceBuilder) {
         this.routineService = routineService;
         this.routineResourceBuilder = routineResourceBuilder;
+        this.routineExerciseResourceBuilder = routineExerciseResourceBuilder;
     }
     
     @GetMapping
-    public List<Routine> getAllRoutines() {
-        return routineService.getAllRoutines();
+    public List<RoutineResource> getAllRoutines() {
+        List<Routine> routines = routineService.getAllRoutines();
+        return routineResourceBuilder.toResource(routines);
     }
 
     // @GetMapping
@@ -60,8 +66,9 @@ public class RoutineController {
 
     @GetMapping
     @RequestMapping("{id}/routine_exercises")
-    public List<RoutineExercise> getAllExercisesForRoutine(@PathVariable Long id) {
-        return routineService.getAllExercisesForRoutine(id);
+    public List<RoutineExerciseResource> getAllExercisesForRoutine(@PathVariable Long id) {
+        List<RoutineExercise> routineExercises = routineService.getAllExercisesForRoutine(id);
+        return routineExerciseResourceBuilder.toResource(routineExercises);
     }
 
     // @PostMapping

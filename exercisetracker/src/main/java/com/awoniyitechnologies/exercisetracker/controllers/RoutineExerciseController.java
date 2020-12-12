@@ -28,8 +28,9 @@ public class RoutineExerciseController {
     }
 
     @GetMapping
-    public List<RoutineExercise> getAllRoutineExercises() {
-        return routineExerciseService.getAllRoutineExercises();
+    public List<RoutineExerciseResource> getAllRoutineExercises() {
+        List<RoutineExercise> routineExercises = routineExerciseService.getAllRoutineExercises();
+        return routineExerciseResourceBuilder.toResource(routineExercises);
     }
 
     // @GetMapping

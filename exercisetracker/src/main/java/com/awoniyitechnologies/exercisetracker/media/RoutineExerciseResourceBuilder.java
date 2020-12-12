@@ -1,5 +1,8 @@
 package com.awoniyitechnologies.exercisetracker.media;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.awoniyitechnologies.exercisetracker.models.RoutineExercise;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +30,14 @@ public class RoutineExerciseResourceBuilder {
         resource.setRep_break(routineExercise.getRep_break());
         resource.setTime(routineExercise.getTime());
 
+        return resource;
+    }
+
+    public List<RoutineExerciseResource> toResource(List<RoutineExercise> routineExercises){
+        List<RoutineExerciseResource> resource = new ArrayList<RoutineExerciseResource>();
+        for (RoutineExercise routineExercise : routineExercises) {
+            resource.add(this.toResource(routineExercise));
+        }
         return resource;
     }
  

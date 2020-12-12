@@ -1,5 +1,8 @@
 package com.awoniyitechnologies.exercisetracker.media;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.awoniyitechnologies.exercisetracker.models.Exercise;
 
 import org.springframework.stereotype.Component;
@@ -19,6 +22,16 @@ public class ExerciseResourceBuilder {
         if (exercise.getParent() != null) {
             resource.setParent_id(exercise.getParent().getExercise_id());
             resource.setParent_name(exercise.getParent().getName());
+        }
+
+        return resource;
+    }
+
+    public List<ExerciseResource> toResource(List<Exercise> exercises) {
+        List<ExerciseResource> resource = new ArrayList<ExerciseResource>();
+
+        for (Exercise exercise : exercises){
+            resource.add(this.toResource(exercise));
         }
 
         return resource;
