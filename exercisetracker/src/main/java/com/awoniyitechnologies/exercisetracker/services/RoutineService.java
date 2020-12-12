@@ -17,11 +17,14 @@ public class RoutineService {
 
     private RoutineRepository routineRepository;
     private RoutineExerciseService routineExerciseService;
+    private ExerciseService exerciseService;
 
     @Autowired
-    public RoutineService(RoutineRepository routineRepository, RoutineExerciseService routineExerciseService) {
+    public RoutineService(RoutineRepository routineRepository, RoutineExerciseService routineExerciseService,
+            ExerciseService exerciseService) {
         this.routineRepository = routineRepository;
         this.routineExerciseService = routineExerciseService;
+        this.exerciseService =exerciseService;
     }
 
     public List<Routine> getAllRoutines() {
@@ -61,4 +64,10 @@ public class RoutineService {
     //     Routine routine = getRoutine(id);
     //     return routineExerciseService.createRoutineExercise(routineExercise);
     // }
+
+    public RoutineExercise createRoutineExercise(Long routine_id, Long exercise_id, RoutineExercise routineExercise) {
+        routineExercise.setRoutine(getRoutine(routine_id));
+        routineExercise.setExercise(exerciseService.getExercise(exercise_id));
+        return routineExerciseService.createRoutineExercise(routineExercise);
+    }
 }

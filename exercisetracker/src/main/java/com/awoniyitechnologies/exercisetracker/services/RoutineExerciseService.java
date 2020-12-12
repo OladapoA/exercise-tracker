@@ -6,6 +6,7 @@ import com.awoniyitechnologies.exercisetracker.models.Routine;
 import com.awoniyitechnologies.exercisetracker.models.RoutineExercise;
 import com.awoniyitechnologies.exercisetracker.repositories.RoutineExerciseRepository;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,5 +32,19 @@ public class RoutineExerciseService {
 
     public List<RoutineExercise> getAllExercisesForRoutine(Routine routine) {
         return routineExerciseRepository.findByRoutine(routine);
+    }
+
+    public RoutineExercise createRoutineExercise(RoutineExercise routineExercise) {
+        return routineExerciseRepository.saveAndFlush(routineExercise);
+    }
+
+    public RoutineExercise updateRoutineExercise(Long id, RoutineExercise routineExercise) {
+        RoutineExercise existingRoutineExercise = getRoutineExercise(id);
+        BeanUtils.copyProperties(routineExercise, existingRoutineExercise, "routine_exercise_id", "routine", "exercise");
+        return routineExerciseRepository.saveAndFlush(existingRoutineExercise);
+    }
+
+    public void deleteRoutineExercise(Long id) {
+        routineExerciseRepository.deleteById(id);
     }
 }

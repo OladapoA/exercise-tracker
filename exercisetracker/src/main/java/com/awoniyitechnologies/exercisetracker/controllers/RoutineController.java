@@ -64,4 +64,11 @@ public class RoutineController {
         List<RoutineExercise> routineExercises = routineService.getAllExercisesForRoutine(id);
         return routineExerciseResourceBuilder.toResource(routineExercises);
     }
+
+    @RequestMapping(path = "{routine_id}/routine_exercises/exercise/{exercise_id}", method = RequestMethod.POST)
+    public RoutineExerciseResource createRoutineExercise(@PathVariable Long routine_id, @PathVariable Long exercise_id,
+            @RequestBody RoutineExercise routineExercise) {
+        RoutineExercise newRoutineExercise = routineService.createRoutineExercise(routine_id, exercise_id, routineExercise);
+        return routineExerciseResourceBuilder.toResource(newRoutineExercise);
+    }
 }
