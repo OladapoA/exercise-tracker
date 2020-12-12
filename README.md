@@ -2,7 +2,7 @@
 
 This is my attempt to create my first full stack web application. The app is a exercise tracker with the initial aim of being able to create exercise routines and save them to a user.
 
-The app consists of 3 layers, the client which is yet created, the API server and a database to persist the data.
+The app consists of 3 layers, the client which is yet to be created, the API server and a database to persist the data.
 
 The client will be built using React.js. I'm hoping to learn the technologies around routing and state management.
 
