@@ -75,7 +75,6 @@ public class UserController {
 
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     public void deleteUser(@PathVariable Long id) {
-        System.out.print("delete");
         userService.deleteUser(id);
     }
     
@@ -88,7 +87,6 @@ public class UserController {
     @RequestMapping(path = "{id}/routines", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public Routine createUserRoutine(@PathVariable Long id, @RequestBody Routine routine) {
-        System.out.print("create");
         return userService.createUserRoutine(id, routine);
     }
 
