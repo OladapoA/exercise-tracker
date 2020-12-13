@@ -15,3 +15,5 @@ look at section 6.3.2. Query Creation
 When creating a routine, the format for time is like "2020-12-05T22:01:00.000+00:00" 
 
 To print to console use: System.out.print();
+
+SELECT * FROM exercises INNER JOIN exercise_muscle_groups ON exercises.exercise_id = exercise_muscle_groups.exercise_id INNER JOIN muscle_groups ON exercise_muscle_groups.muscle_group_id = exercise_muscle_groups.muscle_group_id;
