@@ -30,20 +30,10 @@ public class ExerciseController {
     }
 
     @GetMapping
-    public List<Exercise> getAllExercices() {
-        return exerciseService.getAllExercises();
+    public List<ExerciseResource> getAllExercices() {
+        List<Exercise> exercises = exerciseService.getAllExercises();
+        return exerciseResourceBuilder.toResource(exercises);
     }
-
-    // @PostMapping
-    // public Exercise createExercise(@RequestBody Exercise exercise) {
-    //     return exerciseService.createExercise(exercise);
-    // }
-
-    // @GetMapping
-    // @RequestMapping("{id}")
-    // public Exercise getExercise(@PathVariable Long id) {
-    //     return exerciseService.getExercise(id);
-    // }
 
     @GetMapping
     @RequestMapping("{id}")
@@ -53,8 +43,9 @@ public class ExerciseController {
     }
 
     @RequestMapping(path = "{id}", method = RequestMethod.PUT)
-    public Exercise updateExercise(@PathVariable Long id, @RequestBody Exercise exercise) {
-        return exerciseService.updateExercise(id, exercise);
+    public ExerciseResource updateExercise(@PathVariable Long id, @RequestBody Exercise exercise) {
+        Exercise updatedExercise = exerciseService.updateExercise(id, exercise);
+        return exerciseResourceBuilder.toResource(updatedExercise);
     }
 
     @RequestMapping(path = "{id}", method = RequestMethod.DELETE)
@@ -64,12 +55,8 @@ public class ExerciseController {
 
     @GetMapping
     @RequestMapping("{id}/variations")
-    public List<Exercise> getExerciseVariations(@PathVariable Long id) {
-        return exerciseService.getExerciseVariations(id);
+    public List<ExerciseResource> getExerciseVariations(@PathVariable Long id) {
+        List<Exercise> exercises = exerciseService.getExerciseVariations(id);
+        return exerciseResourceBuilder.toResource(exercises);
     }
-
-    // @RequestMapping(path = "{id}/variations", method = RequestMethod.POST)
-    // public Exercise createExerciseVariation(@PathVariable Long id, @RequestBody Exercise exercise) {
-    //     return exerciseService.createExerciseVariation(id, exercise);
-    // }
 }
