@@ -57,5 +57,4 @@ public class ExerciseService {
         exercise.setParent(getExercise(exercise_id));
         return exerciseRepository.saveAndFlush(exercise);
     }
-
 }

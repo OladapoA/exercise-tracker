@@ -4,11 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.awoniyitechnologies.exercisetracker.models.Exercise;
+import com.awoniyitechnologies.exercisetracker.models.MuscleGroup;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ExerciseResourceBuilder {
+
+    private MuscleGroupResourceBuilder muscleGroupResourceBuilder;
+
+    @Autowired
+    public ExerciseResourceBuilder(MuscleGroupResourceBuilder muscleGroupResourceBuilder){
+        this.muscleGroupResourceBuilder = muscleGroupResourceBuilder;
+    }
     
     public ExerciseResource toResource(Exercise exercise) {
 
@@ -24,7 +33,11 @@ public class ExerciseResourceBuilder {
             resource.setParent_name(exercise.getParent().getName());
         }
 
-        resource.setMuscle_groups(exercise.getMuscle_groups());
+        List<MuscleGroupResource> muscleGroupResources = new ArrayList<MuscleGroupResource>();
+        for (MuscleGroup muscleGroup : exercise.getMuscle_groups()){
+            muscleGroupResources.add(muscleGroupResourceBuilder.toResource(muscleGroup));
+        }
+        resource.setMuscle_groups(muscleGroupResources);
 
         return resource;
     }
