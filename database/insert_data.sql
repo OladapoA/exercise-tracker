@@ -34,11 +34,11 @@ INSERT INTO muscle_groups (major_name, minor_name) VALUES ('Trapezius', NULL);
 INSERT INTO muscle_groups (major_name, minor_name) VALUES ('Abs', NULL);
 
 INSERT INTO exercise_muscle_groups (exercise_id, muscle_group_id) VALUES (2, 5);
-INSERT INTO exercise_muscle_groups (exercise_id, muscle_group_id) VALUES (2, 5);
+INSERT INTO exercise_muscle_groups (exercise_id, muscle_group_id) VALUES (2, 6);
 INSERT INTO exercise_muscle_groups (exercise_id, muscle_group_id) VALUES (2, 8);
 INSERT INTO exercise_muscle_groups (exercise_id, muscle_group_id) VALUES (3, 5);
-INSERT INTO exercise_muscle_groups (exercise_id, muscle_group_id) VALUES (3, 5);
+INSERT INTO exercise_muscle_groups (exercise_id, muscle_group_id) VALUES (3, 6);
 INSERT INTO exercise_muscle_groups (exercise_id, muscle_group_id) VALUES (3, 8);
 INSERT INTO exercise_muscle_groups (exercise_id, muscle_group_id) VALUES (4, 5);
-INSERT INTO exercise_muscle_groups (exercise_id, muscle_group_id) VALUES (4, 5);
+INSERT INTO exercise_muscle_groups (exercise_id, muscle_group_id) VALUES (4, 6);
 INSERT INTO exercise_muscle_groups (exercise_id, muscle_group_id) VALUES (4, 8);
