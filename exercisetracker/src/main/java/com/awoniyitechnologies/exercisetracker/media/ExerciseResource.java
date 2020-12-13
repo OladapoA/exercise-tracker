@@ -1,5 +1,9 @@
 package com.awoniyitechnologies.exercisetracker.media;
 
+import java.util.List;
+
+import com.awoniyitechnologies.exercisetracker.models.MuscleGroup;
+
 public class ExerciseResource {
 
     private Long exercise_id;
@@ -8,6 +12,7 @@ public class ExerciseResource {
     private Long parent_id;
     private String parent_name;
     private Long user_id;
+    private List<MuscleGroup> muscle_groups;
 
     public ExerciseResource(){}
 
@@ -28,4 +33,7 @@ public class ExerciseResource {
 
     public Long getUser_id() { return user_id; }
     public void setUser_id(Long user_id) { this.user_id = user_id; }
+
+    public List<MuscleGroup> getMuscle_groups() { return muscle_groups; }
+    public void setMuscle_groups(List<MuscleGroup> muscle_groups) { this.muscle_groups = muscle_groups; }
 }

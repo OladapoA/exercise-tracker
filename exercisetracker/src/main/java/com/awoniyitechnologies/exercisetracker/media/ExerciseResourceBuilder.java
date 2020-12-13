@@ -24,6 +24,8 @@ public class ExerciseResourceBuilder {
             resource.setParent_name(exercise.getParent().getName());
         }
 
+        resource.setMuscle_groups(exercise.getMuscle_groups());
+
         return resource;
     }
 
